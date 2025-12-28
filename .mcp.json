@@ -2,13 +2,7 @@
   "mcpServers": {
     "glm-ensemble": {
       "command": "node",
-      "args": ["$CLAUDE_PLUGIN_ROOT/mcp-server/dist/index.js"],
-      "env": {
-        "GLM_API_KEY": "${GLM_API_KEY}",
-        "GLM_API_BASE": "${GLM_API_BASE:-https://api.z.ai/api/coding/paas/v4}",
-        "GLM_MODEL": "${GLM_MODEL:-glm-4.7}",
-        "GLM_THINKING_MODE": "${GLM_THINKING_MODE:-interleaved}"
-      }
+      "args": ["$CLAUDE_PLUGIN_ROOT/mcp-server/dist/index.js"]
     }
   }
 }
