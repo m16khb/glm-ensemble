@@ -1,3 +1,10 @@
 {
-  "source": "github:m16khb/glm-ensemble"
+  "name": "GLM Ensemble Marketplace",
+  "owner": "m16khb",
+  "plugins": [
+    {
+      "name": "glm-ensemble",
+      "source": "github:m16khb/glm-ensemble"
+    }
+  ]
 }
