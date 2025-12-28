@@ -32,7 +32,7 @@ npm install
 
 ## API 설정
 - GLM_API_KEY: your-api-key-here
-- GLM_API_BASE: https://api.z.ai/api/paas/v4
+- GLM_API_BASE: https://api.z.ai/api/coding/paas/v4
 - GLM_MODEL: glm-4.7
 
 ## 병렬 처리 설정

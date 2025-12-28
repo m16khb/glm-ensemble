@@ -61,7 +61,7 @@ type RoleKey = keyof typeof ROLES;
 function loadConfig(): GlmConfig {
   return {
     apiKey: process.env.GLM_API_KEY || "",
-    apiBase: process.env.GLM_API_BASE || "https://api.z.ai/api/paas/v4",
+    apiBase: process.env.GLM_API_BASE || "https://api.z.ai/api/coding/paas/v4",
     model: process.env.GLM_MODEL || "glm-4.7",
     thinkingMode: (process.env.GLM_THINKING_MODE as GlmConfig["thinkingMode"]) || "interleaved"
   };
