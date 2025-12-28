@@ -1,10 +1,24 @@
 {
-  "name": "GLM Ensemble Marketplace",
-  "owner": "m16khb",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "glm-ensemble",
+  "description": "z.ai GLM-4.7 멀티에이전트 앙상블 플러그인. 4개 역할(분석/검토/최적화/보안)의 병렬 처리로 최상의 응답 제공",
+  "owner": {
+    "name": "m16khb",
+    "email": "m16khb@gmail.com"
+  },
   "plugins": [
     {
       "name": "glm-ensemble",
-      "source": "github:m16khb/glm-ensemble"
+      "description": "z.ai GLM-4.7 멀티에이전트 앙상블 시스템",
+      "version": "0.1.0",
+      "author": {
+        "name": "m16khb",
+        "email": "m16khb@gmail.com"
+      },
+      "source": "./",
+      "category": "ai",
+      "homepage": "https://github.com/m16khb/glm-ensemble",
+      "keywords": ["glm", "multiagent", "ensemble", "parallel", "z.ai", "glm-4.7"]
     }
   ]
 }
