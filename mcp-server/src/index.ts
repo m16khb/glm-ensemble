@@ -2,6 +2,25 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { config as loadDotenv } from "dotenv";
+import { existsSync } from "fs";
+import { homedir } from "os";
+import { join } from "path";
+
+// .env.local 파일 자동 로드 (환경변수 폴백)
+// 우선순위: 셸 환경변수 > ~/.claude/.env.glm > 플러그인 루트/.env.local
+const envPaths = [
+  join(homedir(), ".claude", ".env.glm"),
+  join(process.cwd(), ".env.local"),
+  join(process.cwd(), ".env")
+];
+
+for (const envPath of envPaths) {
+  if (existsSync(envPath)) {
+    loadDotenv({ path: envPath, override: false }); // 기존 환경변수 우선
+    break;
+  }
+}
 
 // GLM API 설정
 interface GlmConfig {
@@ -164,7 +183,7 @@ server.tool(
 
     if (!config.apiKey) {
       return {
-        content: [{ type: "text", text: "❌ GLM_API_KEY가 설정되지 않았습니다. ~/.claude/glm-ensemble.local.md를 확인하세요." }]
+        content: [{ type: "text", text: "❌ GLM_API_KEY가 설정되지 않았습니다. 셸 환경변수 또는 ~/.claude/.env.glm 파일을 확인하세요." }]
       };
     }
 
@@ -199,7 +218,7 @@ server.tool(
 
     if (!config.apiKey) {
       return {
-        content: [{ type: "text", text: "❌ GLM_API_KEY가 설정되지 않았습니다. ~/.claude/glm-ensemble.local.md를 확인하세요." }]
+        content: [{ type: "text", text: "❌ GLM_API_KEY가 설정되지 않았습니다. 셸 환경변수 또는 ~/.claude/.env.glm 파일을 확인하세요." }]
       };
     }
 
@@ -256,16 +275,19 @@ server.tool(
 
 ## 설정 방법
 
-\`~/.claude/glm-ensemble.local.md\` 파일에 다음 형식으로 설정:
+### 방법 1: 셸 환경변수 (권장)
+\`~/.zshrc\` 또는 \`~/.bashrc\`에 추가:
+\`\`\`bash
+export GLM_API_KEY="your-api-key"
+\`\`\`
 
-\`\`\`markdown
-# GLM Ensemble 설정
-
-## API 설정
-- GLM_API_KEY: your-api-key
-- GLM_API_BASE: https://api.z.ai/api/paas/v4
-- GLM_MODEL: glm-4.7
-- GLM_THINKING_MODE: interleaved
+### 방법 2: 설정 파일
+\`~/.claude/.env.glm\` 파일 생성:
+\`\`\`
+GLM_API_KEY=your-api-key
+GLM_API_BASE=https://api.z.ai/api/coding/paas/v4
+GLM_MODEL=glm-4.7
+GLM_THINKING_MODE=interleaved
 \`\`\``;
 
     return {

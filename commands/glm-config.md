@@ -17,25 +17,38 @@ GLM API 설정을 확인하고 관리한다.
 2. **문제 진단**: API Key 미설정 등 문제가 있으면 안내
 3. **설정 가이드**: 설정 파일 위치와 형식 안내
 
-## 설정 파일 위치
+## 설정 방법
 
-`~/.claude/glm-ensemble.local.md`
+### 방법 1: 셸 환경변수 (권장)
 
-## 설정 형식
+`~/.zshrc` 또는 `~/.bashrc`에 추가:
 
-```markdown
-# GLM Ensemble 설정
-
-## API 설정
-
-- GLM_API_KEY: your-api-key-here
-- GLM_API_BASE: https://api.z.ai/api/coding/paas/v4
-- GLM_MODEL: glm-4.7
-
-## 병렬 처리 설정
-
-- GLM_THINKING_MODE: interleaved
+```bash
+export GLM_API_KEY="your-api-key-here"
 ```
+
+변경 후 적용:
+```bash
+source ~/.zshrc
+```
+
+### 방법 2: 설정 파일
+
+`~/.claude/.env.glm` 파일 생성:
+
+```
+GLM_API_KEY=your-api-key-here
+GLM_API_BASE=https://api.z.ai/api/coding/paas/v4
+GLM_MODEL=glm-4.7
+GLM_THINKING_MODE=interleaved
+```
+
+## 설정 우선순위
+
+1. 셸 환경변수 (최우선)
+2. `~/.claude/.env.glm`
+3. 프로젝트 `.env.local`
+4. 기본값
 
 ## 설정 항목 설명
 
@@ -66,8 +79,10 @@ GLM API 설정을 확인하고 관리한다.
 ### API Key 미설정
 
 1. z.ai 개발자 포털에서 API 키 발급
-2. `~/.claude/glm-ensemble.local.md` 파일 생성
-3. 위 형식에 맞게 API 키 입력
+2. 아래 중 하나 선택:
+   - 셸 환경변수: `export GLM_API_KEY="your-key"`
+   - 설정 파일: `~/.claude/.env.glm`에 `GLM_API_KEY=your-key`
+3. MCP 서버 재연결 (`/mcp` → Reconnect)
 
 ### 연결 오류
 
