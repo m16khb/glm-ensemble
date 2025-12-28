@@ -1,8 +1,7 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output (mcp-server/dist는 플러그인 배포용으로 포함)
 build/
 
 # Local settings (contains API keys)
