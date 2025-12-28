@@ -7,5 +7,6 @@
     "email": "m16khb@gmail.com"
   },
   "keywords": ["glm", "multiagent", "ensemble", "parallel", "z.ai", "glm-4.7"],
-  "license": "MIT"
+  "license": "MIT",
+  "mcpServers": "../.mcp.json"
 }
